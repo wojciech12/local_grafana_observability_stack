@@ -1,0 +1,50 @@
+# Docker volumes and runtime data
+.docker/
+docker-compose.override.yml
+
+# Grafana data
+grafana/data/
+grafana/logs/
+
+# Prometheus data
+prometheus/data/
+
+# Tempo data
+tempo/data/
+
+# Loki data
+loki/data/
+
+# Alloy data
+alloy/data/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
