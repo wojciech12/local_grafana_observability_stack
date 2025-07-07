@@ -95,6 +95,20 @@ The stack follows the official Grafana observability pattern:
 ✅ **Log aggregation** - Centralized logging via Loki with OTLP support  
 ✅ **Auto-provisioning** - Grafana datasources configured automatically
 
+## Testing the Stack
+
+Test the observability stack with sample data:
+
+```bash
+# Test log ingestion via Alloy to Loki
+./tests/test-otel-loki.sh
+
+# Test trace ingestion via Alloy to Tempo
+./tests/test-otel-tempo.sh
+```
+
+These scripts send sample OTLP data through Alloy and verify the telemetry appears in the respective backends.
+
 ## Stopping the Stack
 
 ```bash

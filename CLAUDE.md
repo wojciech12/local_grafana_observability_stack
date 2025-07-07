@@ -9,6 +9,7 @@ This is a complete Grafana observability stack designed for monitoring CLI appli
 ## Common Commands
 
 ### Stack Management
+
 ```bash
 # Start the complete monitoring stack
 docker compose up -d
@@ -30,10 +31,38 @@ docker compose restart <service-name>
 ```
 
 ### Testing
+
 ```bash
 # Test Loki integration with sample log data via Alloy (OTel gateway)
 ./tests/test-otel-loki.sh
+
+# Test Tempo integration with sample trace data via Alloy
+./tests/test-otel-tempo.sh
 ```
+
+## Working with Git
+
+- Git branch name conventions:
+  - prefix: 'feature/' 'bugfix/'
+  - followed by descriptive name
+
+- Git commit messages:
+  - Use imperative mood (e.g., "Add feature" not "Added feature")
+  - Keep subject line concise (50 chars or less)
+  - Start with capital letter and don't end with period
+  - Separate subject from body with a blank line for detailed explanations
+  - NEVER ever mention a co-authored-by or similar aspects. In particular, never mention the tool used to create the commit message or PR.
+
+- Git staging:
+  - NEVER use "git add ." - always add specific files
+  - Use "git add <specific-file>" for individual files
+  - Use "git add <directory>/" for specific directories
+
+## Pull Requests
+
+- Create a detailed message of what changed. Focus on the high level description of the problem it tries to solve, and how it is solved. Don't go into the specifics of the code unless it adds clarity.
+
+- NEVER ever mention a co-authored-by or similar aspects. In particular, never mention the tool used to create the commit message or PR.
 
 ## Architecture Overview
 
@@ -54,18 +83,19 @@ The stack follows a standard observability pattern with OTLP ingestion:
 
 ## Service Endpoints
 
-| Service | Port | Purpose |
-|---------|------|---------|
-| Grafana | 3000 | Dashboards (admin/admin) |
-| Prometheus | 9090 | Metrics queries |
-| Tempo | 3200 | Trace queries |
-| Loki | 3100 | Log queries |
-| Alloy | 12345 | Web UI and status |
+| Service    | Port      | Purpose                       |
+| ---------- | --------- | ----------------------------- |
+| Grafana    | 3000      | Dashboards (admin/admin)      |
+| Prometheus | 9090      | Metrics queries               |
+| Tempo      | 3200      | Trace queries                 |
+| Loki       | 3100      | Log queries                   |
+| Alloy      | 12345     | Web UI and status             |
 | Alloy OTLP | 4317/4318 | gRPC/HTTP telemetry ingestion |
 
 ## CLI Integration
 
 Configure applications to send telemetry to Alloy:
+
 ```bash
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
 export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
@@ -76,6 +106,7 @@ export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
 App → Alloy (OTLP) → Tempo/Prometheus/Loki → Grafana
 
 The stack includes:
+
 - Service graphs generated from traces
 - Span metrics (RED metrics) from trace data
 - Exemplar links between metrics and traces
@@ -85,6 +116,7 @@ The stack includes:
 ## Troubleshooting
 
 Common issues:
+
 - Permission errors: Ensure init container ran successfully
 - Connection failures: Check service dependencies and startup order
 - Missing telemetry: Verify OTLP endpoints are accessible
