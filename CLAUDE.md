@@ -38,6 +38,9 @@ docker compose restart <service-name>
 
 # Test Tempo integration with sample trace data via Alloy
 ./tests/test-otel-tempo.sh
+
+# Test Prometheus integration with sample metrics data via Alloy
+./tests/test-otel-prometheus.sh
 ```
 
 ## Working with Git

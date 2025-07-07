@@ -2,6 +2,10 @@
 
 This directory contains a complete observability stack for monitoring the CLI application with metrics, traces, and logs.
 
+## Notice
+
+Passing OTEL service.name from Alloy to down stream service does not work at this moment.
+
 ## Stack Components
 
 - **Init Container** - Sets proper permissions for Tempo data directory
@@ -105,6 +109,9 @@ Test the observability stack with sample data:
 
 # Test trace ingestion via Alloy to Tempo
 ./tests/test-otel-tempo.sh
+
+# Test metrics ingestion via Alloy to Prometheus
+./tests/test-otel-prometheus.sh
 ```
 
 These scripts send sample OTLP data through Alloy and verify the telemetry appears in the respective backends.

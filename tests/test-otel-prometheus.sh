@@ -147,7 +147,7 @@ curl -s -G "http://localhost:9090/api/v1/query" \
 
 echo -e "\n"
 
-# Test 5: Check all metrics with my-app-prom-test service
+# Test 5: Check all metrics with my-app-prom-test service (notice: service name is in "job" label)
 echo "5. Checking all metrics for my-app-prom-test service..."
 curl -s -G "http://localhost:9090/api/v1/query" \
   --data-urlencode 'query={service_name="my-app-prom-test"}' | jq '.data.result[] | {metric: .metric.__name__, value: .value[1]}'
