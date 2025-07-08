@@ -57,9 +57,9 @@ docker compose restart <service-name>
   - NEVER ever mention a co-authored-by or similar aspects. In particular, never mention the tool used to create the commit message or PR.
 
 - Git staging:
-  - NEVER use "git add ." - always add specific files
-  - Use "git add <specific-file>" for individual files
-  - Use "git add <directory>/" for specific directories
+  - NEVER use "git add ." or any of "git add" bulky options - ALWAYS add specific files
+  - You ALWAYS MUST use "git add <specific-file>" for individual files
+  - You ALWAYS MUST use "git add <directory>/" for specific directories
 
 ## Pull Requests
 
